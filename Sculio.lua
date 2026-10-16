@@ -36,13 +36,10 @@ end
 -- Temporarily disabled content: remove entries to re-enable
 local skip_files = {
   -- Disable until they have a proper sprite
-  ['divine.lua'] = true,
   ['siege.lua'] = true,
   ['trap.lua'] = true,
   -- Disable until my brain works properly
   ['09_arbitrariness.lua'] = true,
-  ['15_the_impatient.lua'] = true,
-  ['16_the_archangel.lua'] = true,
   ['17_the_siege.lua'] = true,
   -- Disabled until they have an effect
   ['83_fun_guy.lua'] = true,
