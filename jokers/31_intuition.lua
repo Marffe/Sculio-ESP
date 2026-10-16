@@ -1,4 +1,3 @@
--- Template: what one enhancement center grants when scored (shared with held-card caching)
 local ODDS = 4
 
 local function count_held(enh_key)
@@ -9,9 +8,6 @@ local function count_held(enh_key)
   return n
 end
 
--- Enhancements whose copied effect can't be read from center.config alone.
--- Mirrors each enhancement's on-scoring behaviour only: destruction flags,
--- held-only, discard and scaling effects are intentionally left out.
 local SPECIAL_TEMPLATES = {
   m_Sculio_punched = function(center)
     return { x_mult = (center.config.extra or {}).x_mult or 1.5 }
@@ -30,8 +26,8 @@ local SPECIAL_TEMPLATES = {
   m_paperback_bandaged = function()
     return { repetitions = 1 }
   end,
-  m_Sculio_phalanx = function()
-    return { phalanx = Sculio.distorted() and 0.4 or 0.2 }
+  m_Sculio_phalanx = function(center)
+    return { phalanx = (center.config.extra or {}).per_card or 0.05 }
   end,
   m_aij_wood = function(center)
     local e = center.config.extra or {}
