@@ -6,7 +6,7 @@ SMODS.Consumable {
   unlocked = true,
   discovered = false,
   cost = 3,
-  config = { extra = { sell_penalty = 5, distorted_sell = 0 } },
+  config = { extra = { sell_penalty = 1, distorted_sell = 0 } },
   loc_vars = function(self, info_queue, card)
     local last = G.GAME.Sculio_last_joker_sold
     local name = localize('k_none')
