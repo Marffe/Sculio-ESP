@@ -38,8 +38,8 @@ The mod requires the most recent version of [Steammodded](https://github.com/Ste
  - 1 Deck
  - 4 Vouchers
  - 2 Spectral Cards
- - 18 (Inverted) Tarot Cards
- - 7 Enhancements
+ - 20 (Inverted) Tarot Cards
+ - 8 Enhancements
  - 1 Seal
  - Reverse Tarot Booster Packs
  - 2 Tags
