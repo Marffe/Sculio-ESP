@@ -1208,9 +1208,9 @@ return {
       m_Sculio_divine = {
         name = 'Carta Divina',
         text = {
-          'Al jugarse, da {C:money}$#1#{}',
-          'por cada {C:attention}palo único{}',
-          'de la mano jugada',
+          'Al anotar, otorga',
+          'a un {C:attention}Comodín{} al azar',
+          '{C:money}$#1# o $#2#{} de valor de venta',
         },
       },
       m_Sculio_siege = {
@@ -1314,6 +1314,7 @@ return {
         text = {
           'Mejora {C:attention}#1#{} cartas seleccionadas',
           'en {C:attention}Cartas Difuminadas{}',
+          '{C:inactive,s:0.7}(Siempre debes seleccionar 3 cartas){}',
         },
       },
       c_Sculio_pikeman = {
@@ -1388,10 +1389,9 @@ return {
       c_Sculio_impatient = {
         name = 'El Impaciente',
         text = {
-          'Da dinero según el valor de venta de todos',
-          'los Comodines y Consumibles',
-          'Pago máximo de {C:money}$#1#{}. Luego reduce el valor',
-          'de venta de un Comodín al azar en {C:money}$1{}',
+          'Otorga {C:money}$#1#{} {C:inactive}(Máximo {C:money}$#2#{C:inactive}){}.',
+          'Los Comodines pierden {C:money}$#3#{}',
+          'de {C:money}valor de venta{}',
         },
       },
       c_Sculio_archangel = {
@@ -1465,17 +1465,16 @@ return {
           'Crea una copia {C:dark_edition}Negativa{}#2#',
           'del último Comodín vendido',
           '{C:inactive}(Actualmente: #1#){}',
-          '{C:inactive,s:0.8}(La copia no tiene valor de venta){}',
+          '{C:inactive,s:0.7}(Tiene #3# de valor de venta){}',
         },
       },
       c_Sculio_mercy_distorted_flow = {
         name = 'Piedad',
         text = {
-          'Crea una copia {C:dark_edition}Negativa{} del último',
-          'Comodín vendido, y además un Comodín',
-          '{C:dark_edition}Negativo{} {C:attention}Perecedero{} al azar',
+          'Crea una copia {C:dark_edition}Negativa{}',
+          'del último Comodín vendido',
           '{C:inactive}(Actualmente: #1#){}',
-          '{C:inactive,s:0.8}(Las copias no tienen valor de venta){}',
+          '{C:inactive,s:0.7}(No tiene valor de venta){}',
         },
       },
     },
@@ -1531,6 +1530,7 @@ return {
     v_dictionary = {
       k_Sculio_crooked_stole = 'Robó $#1#',
       k_Sculio_crooked_bailed = 'Robó $#1#, ¡huyó!',
+      k_Sculio_plus_sell = '+#1# valor de venta',
     },
     labels = {
       inverted = 'Tarot Invertido',

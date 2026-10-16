@@ -1208,9 +1208,9 @@ return {
       m_Sculio_divine = {
         name = 'Divine Card',
         text = {
-          'When played, gains {C:money}$#1#{}',
-          'for each {C:attention}unique suit{}',
-          'in the played hand',
+          'When scored, grants a',
+          'random {C:attention}Joker{}',
+          '{C:money}$#1# or $#2#{} sell value',
         },
       },
       m_Sculio_siege = {
@@ -1316,6 +1316,7 @@ return {
         text = {
           'Enhances {C:attention}#1#{} cards',
           'into {C:attention}Smeared Cards{}',
+          '{C:inactive,s:0.8}(You must always select 3 cards){}',
         },
       },
       c_Sculio_pikeman = {
@@ -1391,10 +1392,10 @@ return {
       c_Sculio_impatient = {
         name = 'The Impatient',
         text = {
-          'Gives money based on the sell value',
-          'of all Jokers and Consumables',
-          'Maximum payout of {C:money}$#1#{}. Then reduces the',
-          'sell value of a random Joker by {C:money}$1{}',
+          'Gives {C:money}$#1#{} in total',
+          '{C:inactive}(Up to {C:money}$#2#{C:inactive}){}.',
+          'Then every Joker loses',
+          '{C:money}$#3#{} sell value',
         },
       },
       c_Sculio_archangel = {
@@ -1472,17 +1473,16 @@ return {
           'Creates a {C:dark_edition}Negative{}#2# copy',
           'of the last Joker sold',
           '{C:inactive}(Currently: #1#){}',
-          'The copy has {C:money}$0{} sell value',
+          '{C:inactive,s:0.7}(Has #3# sell value){}',
         },
       },
       c_Sculio_mercy_distorted_flow = {
         name = 'Mercy',
         text = {
-          'Creates a {C:dark_edition}Negative{} copy of the last',
-          'Joker sold, and also a random {C:dark_edition}Negative{}',
-          '{C:attention}Perishable{} Joker',
+          'Creates a {C:dark_edition}Negative{} copy',
+          'of the last Joker sold',
           '{C:inactive}(Currently: #1#){}',
-          '{C:inactive,s:0.8}(Copies have no sell value){}',
+          '{C:inactive,s:0.7}(No sell value){}',
         },
       },
     },
@@ -1540,6 +1540,7 @@ return {
     v_dictionary = {
       k_Sculio_crooked_stole = 'Stole $#1#',
       k_Sculio_crooked_bailed = 'Stole $#1#, bailed!',
+      k_Sculio_plus_sell = '+#1# sell value',
     },
     labels = {
       inverted = 'Inverted Tarot',
