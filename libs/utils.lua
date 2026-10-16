@@ -91,20 +91,26 @@ function Sculio:calculate(context)
     if sendDebugMessage then sendDebugMessage('Sculio: recorded last inverted = ' .. tostring(context.consumeable.config.center_key), 'SCULIO') end
   end
 
-  if context.press_play and G.hand and G.hand.highlighted then
-    local played = G.hand.highlighted
-    local smeared_cards = {}
-    for _, c in ipairs(played) do
-      if SMODS.has_enhancement(c, 'm_Sculio_smeared') then
-        smeared_cards[#smeared_cards + 1] = c
-      end
+  if context.press_play and G.play and G.play.cards then
+    local smeared = 0
+    for _, c in ipairs(G.play.cards) do
+      if SMODS.has_enhancement(c, 'm_Sculio_smeared') then smeared = smeared + 1 end
     end
-    if #smeared_cards >= 2 then
+    if smeared >= 2 then
       play_sound('tarot1')
-      for i = 2, #smeared_cards do
-        SMODS.destroy_cards(smeared_cards[i])
+      for _, c in ipairs(G.play.cards) do
+        if SMODS.has_enhancement(c, 'm_Sculio_smeared') then
+          c:set_debuff(true)
+          if c.debuff then c.ability.Sculio_smeared_doom = true end
+        end
       end
     end
+  end
+
+  if context.destroy_card and context.destroy_card.ability
+      and context.destroy_card.ability.Sculio_smeared_doom then
+    context.destroy_card.ability.Sculio_smeared_doom = nil
+    return { remove = true }
   end
 
   -- The Atoned / Reborn: remember modifiers of the last destroyed card
