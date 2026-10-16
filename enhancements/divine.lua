@@ -9,12 +9,10 @@ SMODS.Enhancement {
     return { vars = { extra.sell_min, extra.sell_max } }
   end,
   calculate = function(self, card, context)
-    if not (context.main_scoring and context.cardarea == 'unscored') then return end
+    if not (context.main_scoring and context.cardarea == G.play) then return end
     if card.repetition_trigger then return end
     local extra = card.ability.extra or self.config.extra
     local hand = G.GAME.current_round.hands_played
-    if card.ability.Sculio_divine_hand == hand then return end
-    card.ability.Sculio_divine_hand = hand
 
     local pool = {}
     for _, j in ipairs(G.jokers.cards) do
@@ -25,7 +23,6 @@ SMODS.Enhancement {
     local target = pool[math.floor(pseudoseed(salt .. '_joker') * #pool) + 1]
     local amount = extra.sell_min
       + math.floor(pseudoseed(salt .. '_amount') * (extra.sell_max - extra.sell_min + 1))
-    -- Outside of scoring nothing can show a per-card text, so the change is queued
     G.E_MANAGER:add_event(Event({ trigger = 'after', delay = 0.4, func = function()
       if target and not target.gone then
         target.sell_cost = target.sell_cost + amount
