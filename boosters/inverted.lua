@@ -14,12 +14,6 @@ local function pack_loc_vars(self, info_queue, card)
   return { vars = { choices, size }, key = self.key:gsub('_%d$', '') }
 end
 
--- Inverted packs spawn 12% less often than the rest of the booster pool. Pool weights
--- are normalised against the total weight, so scaling ours by 0.88 cuts the aggregate
--- chance of any Inverted pack by exactly 12% without touching the relative odds
--- between normal, jumbo and mega.
-local SPAWN_RATE_MULT = 0.88
-
 local function register(key, pos, size, weight, cost, order, config)
   SMODS.Booster {
     key = key,
@@ -28,7 +22,7 @@ local function register(key, pos, size, weight, cost, order, config)
     kind = 'Inverted',
     group_key = 'k_booster_group_sculio_inverted',
     draw_hand = true,
-    weight = weight * SPAWN_RATE_MULT,
+    weight = weight,
     cost = cost,
     order = order,
     config = config,
@@ -44,11 +38,11 @@ local function register(key, pos, size, weight, cost, order, config)
   }
 end
 
-register('inverted_normal_1', { x = 0, y = 0 }, 'normal', 1, 4, 41, { extra = 3, choose = 1 })
-register('inverted_normal_2', { x = 1, y = 0 }, 'normal', 1, 4, 42, { extra = 3, choose = 1 })
-register('inverted_normal_3', { x = 2, y = 0 }, 'normal', 1, 4, 43, { extra = 3, choose = 1 })
-register('inverted_normal_4', { x = 3, y = 0 }, 'normal', 1, 4, 44, { extra = 3, choose = 1 })
-register('inverted_jumbo_1', { x = 0, y = 1 }, 'jumbo', 1, 6, 45, { extra = 5, choose = 1 })
-register('inverted_jumbo_2', { x = 1, y = 1 }, 'jumbo', 1, 6, 46, { extra = 5, choose = 1 })
-register('inverted_mega_1', { x = 2, y = 1 }, 'mega', 0.25, 8, 47, { extra = 5, choose = 2 })
-register('inverted_mega_2', { x = 3, y = 1 }, 'mega', 0.25, 8, 48, { extra = 5, choose = 2 })
+register('inverted_normal_1', { x = 0, y = 0 }, 'normal', 0.3, 4, 41, { extra = 3, choose = 1 })
+register('inverted_normal_2', { x = 1, y = 0 }, 'normal', 0.3, 4, 42, { extra = 3, choose = 1 })
+register('inverted_normal_3', { x = 2, y = 0 }, 'normal', 0.3, 4, 43, { extra = 3, choose = 1 })
+register('inverted_normal_4', { x = 3, y = 0 }, 'normal', 0.3, 4, 44, { extra = 3, choose = 1 })
+register('inverted_jumbo_1', { x = 0, y = 1 }, 'jumbo', 0.3, 6, 45, { extra = 5, choose = 1 })
+register('inverted_jumbo_2', { x = 1, y = 1 }, 'jumbo', 0.3, 6, 46, { extra = 5, choose = 1 })
+register('inverted_mega_1', { x = 2, y = 1 }, 'mega', 0.07, 8, 47, { extra = 5, choose = 2 })
+register('inverted_mega_2', { x = 3, y = 1 }, 'mega', 0.07, 8, 48, { extra = 5, choose = 2 })
