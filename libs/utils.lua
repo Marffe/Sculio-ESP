@@ -185,6 +185,37 @@ function Sculio.is_debuff_immune(target)
   return false
 end
 
+-- Mercy: preserve the custom sell cost of revived jokers across set_cost().
+-- Hook at load time (covers base-game/global set_cost calls).
+local _sculio_set_cost_ref = Card.set_cost
+function Card.set_cost(self)
+  local ret = _sculio_set_cost_ref(self)
+  if self and self.ability and self.ability.scuio_mercy_revived then
+    self.sell_cost = self.ability.scuio_mercy_sell
+  end
+  return ret
+end
+
+-- Re-wrap at run start so this restoration runs after any mod that wrapped
+-- Card.set_cost later (Paperback, etc.).
+if Game and Game.start_run then
+  local _sculio_game_start_run = Game.start_run
+  function Game:start_run(args)
+    if not Sculio._mercy_set_cost_wrapped then
+      local ref = Card.set_cost
+      Card.set_cost = function(self)
+        local ret = ref(self)
+        if self and self.ability and self.ability.scuio_mercy_revived then
+          self.sell_cost = self.ability.scuio_mercy_sell
+        end
+        return ret
+      end
+      Sculio._mercy_set_cost_wrapped = true
+    end
+    return _sculio_game_start_run(self, args)
+  end
+end
+
 -- Check whether any registered Edition grants XChips before swapping the
 -- Figurine and Puck descriptions on the first calculation after loading.
 Sculio._xchips_edition_cache = nil

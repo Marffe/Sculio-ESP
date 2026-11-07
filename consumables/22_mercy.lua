@@ -42,7 +42,11 @@ SMODS.Consumable {
       if not distorted and SMODS.Stickers.perishable and SMODS.Stickers.perishable.apply then
         SMODS.Stickers.perishable:apply(new_card, true)
       end
-      new_card.sell_cost = distorted and extra.distorted_sell or -extra.sell_penalty
+      -- Keep the penalty sell cost across later set_cost() calls (inflation,
+      -- Astronomer, rental sticker, Paperback, etc.).
+      new_card.ability.scuio_mercy_revived = true
+      new_card.ability.scuio_mercy_sell = distorted and extra.distorted_sell or -extra.sell_penalty
+      new_card.sell_cost = new_card.ability.scuio_mercy_sell
       card:juice_up(0.3, 0.5)
       return true
     end }))
