@@ -9,6 +9,8 @@ Sculio.add_lunar_pack_to_shop = function(context)
 
   local pack = SMODS.add_booster_to_shop('p_celestial_mega_1')
   if pack then
+    pack.ability.couponed = true
+    pack:set_cost()
     pack.cost = 0
     G.GAME.sculio_lunar_pack_ante = ante
   end
