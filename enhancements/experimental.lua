@@ -39,7 +39,7 @@ SMODS.Enhancement {
     return { vars = vars, key = key }
   end,
   calculate = function(self, card, context)
-    if context.main_scoring and context.cardarea == G.play and not context.retrigger_joker and not (card and card.repetition_trigger) then
+    if context.main_scoring and context.cardarea == G.play and not context.retrigger_joker_check then
       if card.ability.extra.done then return end
       card.ability.extra.count = card.ability.extra.count + 1
       if card.ability.extra.count >= card.ability.extra.max then
